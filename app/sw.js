@@ -1,4 +1,5 @@
 const CACHE_NAME = 'V1';
+const NETWORK_TIMEOUT_MS = 5000
 const STATIC_CACHE_URLS = ['/', 'styles.css', 'scripts.js', '/icons/*.png'];
 self.addEventListener('install', event => {
 
@@ -16,13 +17,32 @@ self.addEventListener('install', event => {
 
 });
 
+
 self.addEventListener('fetch', event => {
-    // Cache-First Strategy
-    event.respondWith(
-      caches.match(event.request) // check if the request has already been cached
-      .then(cached => cached || fetch(event.request)) // otherwise request network
-    );
-  });
+  console.log(event)
+  const cached = caches.match(event.request)
+  const fetched = fetch(event.request, { cache: 'no-store' })
+  const fetchedCopy = fetched.then(resp => resp.clone())
+
+  const delayCacheResponse = new Promise((resolve) => {
+      setTimeout(resolve, NETWORK_TIMEOUT_MS, cached);
+  })
+
+  event.respondWith(
+  Promise.race([fetched.catch(_ => cached), delayCacheResponse])
+      .then(resp => resp || fetched)
+      .catch(_ => {
+           console.log(_) /* eat any errors */
+      })
+  )
+
+  // Update the cache with the version we fetched (only for ok status)
+  event.waitUntil(
+  Promise.all([fetchedCopy, caches.open(CACHE_NAME)])
+      .then(([response, cache]) => response.ok && cache.put(event.request, response))
+      .catch(_ => { /* eat any errors */ })
+  )
+})
 
   self.addEventListener('message', (event) => {
     if (event.data.type === 'CACHE_URLS') {
@@ -38,17 +58,3 @@ self.addEventListener('fetch', event => {
         );
     }
 });
-
-// function filterCachedURLs(urls)
-// {
-//     let outURLs = []
-//     urls.forEach(url => {
-//         if(url.indexOf('localhost')!=-1)
-//         {
-//             outURLs.push(url);
-//         }
-//     });
-
-//     return outURLs;
-
-// }

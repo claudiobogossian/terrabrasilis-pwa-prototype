@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Front-end Study Group: Crie a sua PWA!</title>
-
+   
+    
+    <!-- 3rd party libs and css-->
+    <script src="lib/jquery-3.7.1/js/jquery-3.7.1.min.js"></script>
+    <script src="lib/bootstrap-5.3.3/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="lib/bootstrap-5.3.3/css/bootstrap.css">
+    <script async src="https://cdn.jsdelivr.net/npm/pwacompat@2.0.8/pwacompat.min.js" integrity="sha384-uONtBTCBzHKF84F6XvyC8S0gL8HTkAPeCyBNvfLfsqHh+Kd6s/kaS4BdmNQ5ktp1" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <script src="scripts.js"></script>
-    <link rel="manifest" href="manifest.json">
-    <script async src="https://cdn.jsdelivr.net/npm/pwacompat@2.0.8/pwacompat.min.js"
-    integrity="sha384-uONtBTCBzHKF84F6XvyC8S0gL8HTkAPeCyBNvfLfsqHh+Kd6s/kaS4BdmNQ5ktp1"
-    crossorigin="anonymous"></script>
+
+    <!-- Meta data -->
 
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -18,40 +20,49 @@
     <meta name="apple-mobile-web-app-title" content="PWA Workshop">
     <meta name="msapplication-starturl" content="/index.html">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- App Imports -->
+
+    <link rel="manifest" href="manifest.json">    
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/scripts.js"></script>
+
+
 </head>
 <body>
 
 <header>
-    <h1>Front-end Study Group: Crie a sua PWA!</h1>
-    <p>Workshop de Introdução de Progressive Web Apps</p>
-    <img src="icons/womakerscode_cinza.png" />
+    <h1>TerraBrasilis PWA - Offline test </h1>
 </header>
 
-<section id="infos">
-    <aside>
-        <h2>Pré-requisitos</h2>
-        <ul>
-            <li>Conhecimetnos básicos de HTML/CSS/JS</li>
-            <li>Editor de código: <a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a></li>
-            <li>Browser (navegdor de internet)</li>
-            <li>Um web server local como <a href="http://npmjs.com/serve" target="_blank">npmjs.com/serve</a></li>
-            <li>Este webapp clonado localmente</li>
+<div class="layout">
+    <nav class="sidebar border-end">
+        <div class="sidebar-header border-bottom">
+            <div class="sidebar-brand">Logo</div>
+        </div>
+        <ul class="sidebar-nav">
+            <li class="nav-title">Nav Title</li>
+            <li class="nav-item">
+            <a class="nav-link active" href="#">
+                <i class="nav-icon cil-speedometer"></i> Nav item
+            </a>            
         </ul>
-    </aside>
-    <article>
-        <p>You probably already heard the term Progressive Web App (PWA) if you follow the latest trends around web development. What does it mean and how do they improve a web application? This workshop will allow you to better understand PWA with a little practice. 💪.</p>
-        <p>We will together transform this simple web page into a PWA. This will allow the user to have a basic offline mode to view the application and to add it as a shortcut on the home screen of his smartphone.</p>
-    </article>
-</section>
+    </nav>
+    <nav class="content">
 
-<section id="attendees">
-    <h1>Attendees</h1>
-    <p>Loading the attendees list...</p>
-</section>
+        <label for="fetch-result">Fetch content:</label>
+        <textarea id="fetch-result">
+
+        </textarea>
+        <button onclick="loadJSON()">Load Content</button>
+    </nav>
+</div>
+
+
+
 
 <footer>
-    <p>This workshop is created and presented by Yassine Benabbas and Sylvain Pollet-Villard</p>
-    <p class="license"><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png"></a>Except where otherwise noted, this website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
+    <p>This workshop is created and presented by Yassine Benabbas and Sylvain Pollet-Villard</p>    
 </footer>
 
 </body>

@@ -1,0 +1,55 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'roboto,sans-serif';
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+header {
+    background-color: #00796b;
+    color: #eee;
+    font-size: 1.4rem;
+}
+
+header,
+section,
+footer {
+    padding: 0.5em 1em;
+}
+
+section {
+    margin: auto;
+}
+
+footer {
+    display: block;
+    margin: 1em 0 0 0;
+    background-color: #333;
+    color: #eee;
+}
+
+footer a {
+    color: #fff;
+}
+
+.layout
+{
+    display: flex;
+}
+.content
+{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.sidebar
+{
+    min-width: 250px;
+}
+#fetch-result
+{
+    min-height: 300px;
+}
